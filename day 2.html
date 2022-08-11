@@ -1,0 +1,149 @@
+<head>
+
+    <title>
+        Chutney Recipes
+    </title>
+
+    <style>
+        body{
+            background-color: #e0e8b1;
+        }
+        .item-container{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 400px;
+        }
+        .title{
+            display: flex;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+        <h1><center>Welcome to Preethi's Chutney Counter</center></h1>
+        <h2><center>Menu</center></h2>
+        <br>
+    </div>
+    
+    <div id="container" class="container">
+       <div class="item-container">
+           <h3>Coconut chutney</h3>
+           <img width=200px; src="./coco.png" >
+           <p><b>Ingredients:</b></p>
+           <p>coconut</p>
+           <p>ginger</p>
+           <p>chilli pepper</p>
+           <p>curry leaves</p>
+           <p>urad dal</p>
+           <p>salt to taste</p>
+           <p>mustard seeds</p>
+
+           <button class="remove-button">Remove</button>
+       </div>
+
+       <div class="item-container">
+        <h3>Onion Chutney</h3>
+        <img width=200px; src="./onio.png">
+        <p><b>Ingredients:</b></p>
+        <p>onion</p>
+        <p>urad dal</p>
+        <p>dried red chillies</p>
+        <p>salt to taste</p>
+        <p>tamarind small piece</p>
+        <p>jaggery small piece</p>
+        <button class="remove-button">Remove</button>
+       </div>
+
+    <div class="item-container">
+        <h3>Tomato Chutney</h3>
+        <img width=200px; src="./tom.png">
+        <p><b>Ingredients:</b></p>
+        <p>tomatoes</p>
+        <p>urad dal</p>
+        <p>chilli powder</p>
+        <p>turmeric</p>
+        <p>salt</p>
+        <p>jaggery</p>
+        <p>garlic</p>
+        <p></p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    <div class="item-container">
+        <h3>Mint Chutney</h3>
+        <img width=200px; src="./mint.png">
+        <p><b>Ingredients:</b></p>
+        <p>mint leaves</p>
+        <p>coriander</p>
+        <p>cumin powder</p>
+        <p>green chillies</p>
+        <p>garlic cloves</p>
+        <p>ginger</p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    <div class="item-container">
+        <h3>Raw Mango Chutney</h3>
+        <img width=200px; src="./raw.png">
+        <p><b>Ingredients:</b></p>
+        <p>medium size Raw Green Mango <br>
+        Green Chilli, seeded and chopped <br>
+        Ginger, chopped <br>
+        Cumin Seeds <br>
+        Coriander Leaves <br>
+        Sugar <br>
+        Salt</p>
+        <button class="remove-button">Remove</button>
+    </div>
+
+    </div>
+
+    <div style="margin: 20px">
+        <input id="inputbox" type="text">
+        <button>Add Item</button>
+    </div>
+
+</body>
+
+<script>
+    
+    function removeItem(event) {
+        event.target.parentElement.remove()
+    }
+    
+    let removeButtons = document.getElementsByClassName('remove-button')
+
+    for(let i=0;i<removeButtons.length;i++) {
+        removeButtons[i].addEventListener("click",removeItem)
+    }
+        
+    function addItem() {
+        let itemToAdd = document.getElementById('inputbox').value
+        let htmlToAdd = `
+        <div class="item-container">
+            <h3>${itemToAdd}</h3>
+            <button onclick = "removeItem('${itemToAdd}')">Remove</button>
+        </div>`
+
+        let newElement = document.createElement('div')
+        newElement.innerHTML = htmlToAdd
+
+        document.getElementById('container').appendChild(newElement)
+         
+        document.getElementById("container").innerHTML += `
+        <div class="item-container">
+        <div class="title">${itemToAdd}</div>
+        <button onclick = "removeItem('${itemToAdd}')">Remove</button>
+        </div>
+        `
+
+    }
+</script>
